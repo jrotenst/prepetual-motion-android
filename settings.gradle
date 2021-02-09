@@ -1,2 +1,3 @@
+include ':pm_game'
 include ':app'
 rootProject.name = "Prepetual Motion"
