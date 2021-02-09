@@ -1,9 +1,10 @@
-package com.jrutz.prepetualmotion;
+package com.jrutz.prepetualmotion.activities;
 
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.jrutz.prepetualmotion.R;
 import com.mintedtech.perpetual_motion.pm_game.PMGame;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,9 +49,9 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+        //if (id == R.id.action_settings) {
+        //   return true;
+        //}
 
         return super.onOptionsItemSelected(item);
     }
@@ -59,5 +60,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startNewGame(MenuItem item) {
+    }
+
+    public void turn_action_discard(View view) {
+    }
+
+    public void turn_action_deal(View view) {
     }
 }
