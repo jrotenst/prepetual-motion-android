@@ -1,10 +1,37 @@
 <resources>
     <string name="app_name">Prepetual Motion</string>
     <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
 
+    <string name="new_game">New Game</string>
+    <string name="undo">Undo</string>
+    <string name="about">About</string>
+    <string name="about_message">Original Java CLI version by Professor MP.
+        \n\nAdditions/Changes and Android version by Professor SA.
+        \n\nThanks to Touro College MCO 451/521 students for their ideas and suggestions.
+        \n\nHave fun!!</string>
+    <string name="cards_in_stack">"Cards In Pile: "</string>
+    <string name="cards_to_discard">"Cards to Discard: "</string>
+    <string name="in_deck">"Cards in the Deck: "</string>
+    <string name="discard">Discard Card(s)</string>
+    <string name="deal">Deal Four Cards</string>
+    <string name="discard_short">Discard</string>
+    <string name="deal_short">Deal</string>
+    <string name="game_over">Game Over</string>
+    <string name="welcome_new_game">Welcome to a new Game!</string>
+    <string name="welcome_restore_game">Welcome back!</string>
+    <string name="you_have_cleared_the_board">You have successfully cleared the board!</string>
+    <string name="no_more_turns_remain">No more valid turns remain</string>
+    <string name="new_game_question">Start New Game?</string>
+    <string name="turn_error_discard_other">To discard, please select either one or two cards at a time.</string>
+    <string name="turn_error_discard_one">To discard one card, a higher-valued card of the same suit must also be visible.</string>
+    <string name="turn_error_discard_two">To discard two cards, both cards must have the same numeric value.</string>
+    <string name="title_no_cards_remain">No cards Remain</string>
+    <string name="body_all_cards_dealt_to_stacks">All cards have already been dealt to the piles</string>
+    <string name="key_use_auto_save">AUTO_SAVE</string>
+    <string name="title_use_auto_save">Use Auto-Save</string>
+    <string name="key_show_turn_specific_error_messages">SHOW_ERRORS</string>
+    <string name="title_show_turn_specific_error_messages">Show Card Discard Errors</string>
+    <string name="error_cannot_discard_from_empty_pile">Cannot discard from an empty pile</string>
+    <string name="msg_game_already_ended">Game has already ended</string>
+    <string name="fab">FAB</string>
 </resources>

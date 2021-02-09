@@ -14,8 +14,8 @@
     <color name="SecondaryTextColor">@color/primaryColor</color>
 
     <!-- Matching colored background -->
-    <color name="backgroundColoredColor">@color/primaryLightColor</color>
+    <color name="coloredBackgroundColor">@color/primaryLightColor</color>
 
     <!-- Used for Splash Screen background, and elsewhere as needed -->
-    <color name="backgroundDefaultColor">@android:color/background_light</color>
+    <color name="defaultBackgroundColor">@android:color/background_light</color>
 </resources>

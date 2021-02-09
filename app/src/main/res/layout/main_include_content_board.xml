@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_board"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/activity_horizontal_half_margin"
+    app:cardBackgroundColor="@color/coloredBackgroundColor"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:showIn="@layout/content_main">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_piles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingEnd="@dimen/activity_horizontal_half_margin"
+        android:paddingRight="@dimen/activity_horizontal_half_margin"
+        android:paddingBottom="@dimen/activity_horizontal_half_margin"
+        tools:ignore="RtlSymmetry"
+        tools:itemCount="4"
+        tools:layoutManager="GridLayoutManager"
+        tools:listitem="@layout/rv_item_pile_top_card"
+        tools:spanCount="2" />
+
+</com.google.android.material.card.MaterialCardView>

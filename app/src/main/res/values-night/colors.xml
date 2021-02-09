@@ -6,8 +6,8 @@
     <color name="SecondaryTextColor">@color/primaryColor</color>
 
     <!-- Matching colored background -->
-    <color name="backgroundColoredColor">@color/primaryDarkColor</color>
+    <color name="coloredBackgroundColor">@color/primaryDarkColor</color>
 
     <!-- Used for Splash Screen background, and elsewhere as needed -->
-    <color name="backgroundDefaultColor">@android:color/background_dark</color>
+    <color name="defaultBackgroundColor">@android:color/background_dark</color>
 </resources>

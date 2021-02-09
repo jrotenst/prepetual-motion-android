@@ -54,4 +54,10 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void undoLastMove(MenuItem item) {
+    }
+
+    public void startNewGame(MenuItem item) {
+    }
 }

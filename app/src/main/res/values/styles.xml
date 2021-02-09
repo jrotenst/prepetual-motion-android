@@ -1,0 +1,78 @@
+<resources>
+    <!-- main_include_button_bar - two styles -->
+    <style name="buttonBarStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_margin">@dimen/activity_horizontal_half_margin</item>
+        <item name="android:background">@color/defaultBackgroundColor</item>
+        <item name="android:divider">@android:drawable/divider_horizontal_bright</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:showDividers">middle</item>
+        <item name="android:weightSum">1</item>
+    </style>
+
+    <style name="borderlessButtonStyle" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">.5</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/button_color_selector</item>
+        <item name="textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body2</item>
+    </style>
+
+    <!-- main_include_status_bar_placeholder -->
+    <style name="statusBarStyle">
+        <item name="android:weightSum">1</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:divider">?dividerVertical</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:showDividers">middle</item>
+    </style>
+
+    <style name="textViewStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@android:color/primary_text_light</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body1</item>
+    </style>
+
+    <style name="textViewStyle.status">
+        <item name="android:layout_weight">.5</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@android:color/primary_text_dark</item>
+        <item name="android:layout_marginLeft">@dimen/activity_horizontal_margin_double</item>
+        <item name="android:layout_marginRight">@dimen/activity_horizontal_margin_double</item>
+    </style>
+
+    <!-- rv_item.xml (inner) - TextView style -->
+    <style name="textViewStyle.innerCardText">
+        <item name="android:layout_margin">@dimen/activity_horizontal_half_margin</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline6</item>
+
+    </style>
+
+    <style name="textViewStyle.innerCardText.larger">
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline5</item>
+    </style>
+
+    <style name="checkBoxStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:checked">false</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body1</item>
+    </style>
+
+    <!-- rv_item.xml (outer) - TextView style -->
+    <style name="textViewStyle.outerCardText">
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body2</item>
+        <item name="android:textColor">@android:color/primary_text_dark</item>
+        <item name="android:layout_marginBottom">@dimen/activity_horizontal_margin</item>
+    </style>
+</resources>

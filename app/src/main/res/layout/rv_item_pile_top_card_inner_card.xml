@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.circularreveal.cardview.CircularRevealCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pile_card_inner_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/activity_horizontal_margin"
+    app:cardBackgroundColor="@color/defaultBackgroundColor"
+    app:cardCornerRadius="@dimen/activity_horizontal_margin"
+    tools:showIn="@layout/rv_item_pile_top_card">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:padding="@dimen/activity_horizontal_margin">
+
+        <CheckBox
+            android:id="@+id/pile_card_checkbox"
+            style="@style/checkBoxStyle"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text=" " />
+
+        <TextView
+            android:id="@+id/pile_card_rank_top"
+            style="@style/textViewStyle.innerCardText.larger"
+            android:gravity="end"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="10" />
+
+        <TextView
+            android:id="@+id/pile_card_name_bottom"
+            style="@style/textViewStyle.innerCardText"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:text="King" />
+
+        <TextView
+            android:id="@+id/pile_card_suit_center"
+            style="@style/textViewStyle.innerCardText"
+            app:layout_constraintBottom_toTopOf="@+id/pile_card_name_bottom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pile_card_checkbox"
+            tools:text="♠" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.circularreveal.cardview.CircularRevealCardView>

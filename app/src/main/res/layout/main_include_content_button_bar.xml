@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:layout_gravity="center"
+    android:layout_margin="@dimen/activity_horizontal_half_margin"
+    android:gravity="center"
+    android:padding="@dimen/activity_horizontal_margin"
+    app:cardBackgroundColor="@color/coloredBackgroundColor"
+    app:cardCornerRadius="0dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/card_board"
+    tools:showIn="@layout/content_main">
+
+    <LinearLayout style="@style/buttonBarStyle">
+
+        <Button
+            style="@style/borderlessButtonStyle"
+            android:onClick="turn_action_discard"
+            android:text="@string/discard" />
+
+        <Button
+            style="@style/borderlessButtonStyle"
+            android:onClick="turn_action_deal"
+            android:text="@string/deal" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

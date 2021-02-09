@@ -3,8 +3,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.jrutz.prepetualmotion.MainActivity">
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:id="@+id/action_discard"
+        android:icon="@android:drawable/ic_menu_delete"
+        android:title="@string/discard_short"
+        app:showAsAction="ifRoom|withText" />
+
+    <item
+        android:id="@+id/action_deal"
+        android:icon="@android:drawable/ic_menu_set_as"
+        android:title="@string/deal_short"
+        app:showAsAction="ifRoom|withText" />
+
+    <!-- use onClick for these two (why not?)...so no need to handle in onOptionsItemSelected... -->
+    <item
+        android:icon="@android:drawable/ic_menu_revert"
+        android:onClick="undoLastMove"
+        android:title="@string/undo"
+        app:showAsAction="ifRoom|withText" />
+    <item
+        android:icon="@android:drawable/ic_media_play"
+        android:onClick="startNewGame"
+        android:title="@string/new_game"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_toggle_auto_save"
+        android:checkable="true"
+        android:title="@string/title_use_auto_save"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_turn_show_error_messages"
+        android:checkable="true"
+        android:title="@string/title_show_turn_specific_error_messages"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_about"
+        android:icon="@android:drawable/ic_dialog_info"
+        android:title="@string/about"
         app:showAsAction="never" />
 </menu>
