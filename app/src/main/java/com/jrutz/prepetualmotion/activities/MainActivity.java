@@ -67,4 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void turn_action_deal(View view) {
     }
+
+    public void turn_action_undo(View view) {
+    }
 }

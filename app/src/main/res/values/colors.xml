@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primaryColor">#80cbc4</color>
-    <color name="primaryLightColor">#b2fef7</color>
-    <color name="primaryDarkColor">#4f9a94</color>
-    <color name="secondaryColor">#006064</color>
-    <color name="secondaryLightColor">#428e92</color>
-    <color name="secondaryDarkColor">#00363a</color>
+    <color name="primaryColor">#a5d6a7</color>
+    <color name="primaryLightColor">#d7ffd9</color>
+    <color name="primaryDarkColor">#75a478</color>
+    <color name="secondaryColor">#33691e</color>
+    <color name="secondaryLightColor">#629749</color>
+    <color name="secondaryDarkColor">#003d00</color>
     <color name="primaryTextColor">#000000</color>
     <color name="secondaryTextColor">#ffffff</color>
 
     <!-- For colored text; default is black/dark-gray (Day) or white/light-gray (Night) -->
     <color name="primaryTextColoredColor">@color/primaryDarkColor</color>
-    <color name="SecondaryTextColor">@color/primaryColor</color>
+    <color name="SecondaryTextColor">@color/primaryDarkColor</color>
 
     <!-- Matching colored background -->
     <color name="coloredBackgroundColor">@color/primaryLightColor</color>
