@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_horizontal_margin">2dp</dimen>
+    <dimen name="activity_horizontal_half_margin">4dp</dimen>
+    <dimen name="activity_horizontal_margin_double">8dp</dimen>
+
+    <dimen name="card_text_smaller_size">12sp</dimen>
+    <dimen name="card_text_standard_size">14sp</dimen>
+    <dimen name="card_text_larger_size">16sp</dimen>
+</resources>
