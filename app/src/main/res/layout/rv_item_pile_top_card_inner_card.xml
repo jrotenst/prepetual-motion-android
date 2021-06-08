@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/activity_horizontal_margin"
-    app:cardBackgroundColor="@color/defaultBackgroundColor"
+    app:cardBackgroundColor="@color/innerCardBackgroundColor"
     app:cardCornerRadius="@dimen/activity_horizontal_margin"
     tools:showIn="@layout/rv_item_pile_top_card">
 

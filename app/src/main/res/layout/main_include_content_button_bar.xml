@@ -27,7 +27,6 @@
 
         <Button
             style="@style/borderlessButtonStyle"
-            android:layout_weight=".18"
             android:onClick="turn_action_undo"
             android:text="@string/undo" />
 

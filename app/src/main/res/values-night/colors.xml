@@ -9,5 +9,7 @@
     <color name="coloredBackgroundColor">@color/primaryDarkColor</color>
 
     <!-- Used for Splash Screen background, and elsewhere as needed -->
-    <color name="defaultBackgroundColor">@android:color/darker_gray</color>
+    <color name="defaultBackgroundColor">@color/cardview_dark_background</color>
+    <color name="innerCardBackgroundColor">@android:color/darker_gray</color>
+
 </resources>

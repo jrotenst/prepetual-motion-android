@@ -10,12 +10,12 @@
         <item name="android:gravity">center</item>
         <item name="android:orientation">horizontal</item>
         <item name="android:showDividers">middle</item>
-        <item name="android:weightSum">1</item>
+        <item name="android:weightSum">.99</item>
     </style>
 
     <style name="borderlessButtonStyle" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="android:layout_width">0dp</item>
-        <item name="android:layout_weight">.41</item>
+        <item name="android:layout_weight">.33</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/button_color_selector</item>
@@ -74,6 +74,7 @@
         <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body2</item>
         <item name="android:textColor">@android:color/primary_text_dark</item>
         <item name="android:layout_marginBottom">@dimen/activity_horizontal_margin</item>
+        <item name="android:gravity">center</item>
     </style>
 
 </resources>
