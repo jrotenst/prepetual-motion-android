@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="@string/key_show_turn_specific_error_messages"
+        android:title="@string/title_show_turn_specific_error_messages" />
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="@string/key_use_auto_save"
+        android:title="@string/title_use_auto_save" />
+</androidx.preference.PreferenceScreen>
