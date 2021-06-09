@@ -1,5 +1,6 @@
 package com.jrutz.prepetualmotion.activities;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -7,8 +8,10 @@ import com.google.android.material.snackbar.Snackbar;
 import com.jrutz.prepetualmotion.R;
 import com.jrutz.prepetualmotion.classes.CardPilesAdapter;
 import com.jrutz.prepetualmotion.interfaces.AdapterOnItemClickListener;
+import com.mintedtech.perpetual_motion.pm_game.Card;
 import com.mintedtech.perpetual_motion.pm_game.PMGame;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -20,6 +23,10 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import static com.jrutz.prepetualmotion.classes.Utils.showYesNoDialog;
+import static com.mintedtech.perpetual_motion.pm_game.PMGame.getJSONof;
+import static com.mintedtech.perpetual_motion.pm_game.PMGame.restoreGameFromJSON;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,6 +44,18 @@ public class MainActivity extends AppCompatActivity {
     // UI Strings
     private String mWINNER_MSG, mNON_WINNER_MSG;
 
+    // Keys used for save/restore during rotation and for Preferences if auto-save (above) is turned on
+    private final String mKeyCheckedPiles = "CHECKED_PILES";
+    private final String mKeyGame = "GAME";
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putString(mKeyGame, getJSONof(mCurrentGame));
+        outState.putBooleanArray(mKeyCheckedPiles, mAdapter.getCheckedPiles());
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,13 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
         setFieldReferencesToViewsAndSnackBar();
         setupBoard();
-    }
-
-    private void setFieldReferencesToViewsAndSnackBar() {
-        mSbContainer = findViewById(R.id.activity_main);
-        mTv_cardsRemaining = findViewById(R.id.tv_cards_remaining_to_discard);
-        mTv_cardsInDeck = findViewById(R.id.tv_cards_in_deck);
-        mSnackBar = Snackbar.make(mSbContainer, R.string.welcome_new_game, Snackbar.LENGTH_SHORT);
+        doInitialStartGame(savedInstanceState);
     }
 
     private void setupToolbar() {
@@ -69,6 +82,13 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+    }
+
+    private void setFieldReferencesToViewsAndSnackBar() {
+        mSbContainer = findViewById(R.id.activity_main);
+        mTv_cardsRemaining = findViewById(R.id.tv_cards_remaining_to_discard);
+        mTv_cardsInDeck = findViewById(R.id.tv_cards_in_deck);
+        mSnackBar = Snackbar.make(mSbContainer, R.string.welcome_new_game, Snackbar.LENGTH_SHORT);
     }
 
     private void setupBoard() {
@@ -97,6 +117,98 @@ public class MainActivity extends AppCompatActivity {
 
         // apply the adapter object to the RecyclerView
         rvPiles.setAdapter(mAdapter);
+    }
+
+    private void doInitialStartGame(Bundle savedInstanceState) {
+        // If this is NOT the first run, meaning, we're recreating as a result of a device rotation
+        // then restore the board (meaning both cards and user's checks) as from before the rotation
+        // Otherwise (if this is a fresh start of the Activity and NOT after a rotation),
+        // if auto-save is enabled then restore the game from sharedPrefs
+        // otherwise (not post-rotation and auto-save off or no game in prefs): start a new game
+
+        if (savedInstanceState != null) {
+            restoreSavedGameAndBoardFromBundle(savedInstanceState);
+        /*} else if (mPrefUseAutoSave && isValidGameInPrefs()) {
+            restoreSavedGameAndBoardFromPrefs();*/
+        } else {
+            startNewGame();
+        }
+    }
+
+    private void startNewGame() {
+        startGameAndSetBoard(new PMGame(), null, R.string.welcome_new_game);
+    }
+
+    private void restoreSavedGameAndBoardFromBundle(Bundle savedInstanceState) {
+        startGameAndSetBoard(restoreGameFromJSON(savedInstanceState.getString(mKeyGame)),
+                savedInstanceState.getBooleanArray(mKeyCheckedPiles), 0);
+    }
+
+    private void startGameAndSetBoard(PMGame game, boolean[] checks, int msgID) {
+        // create/restore the game
+        mCurrentGame = game != null ? game : new PMGame();
+
+        // update the board
+        doUpdatesAfterGameStartOrTakingTurn();
+
+        // overwrite checks if not null
+        if (checks != null)
+            mAdapter.overwriteChecksFrom(checks);
+
+        // Show New Game message if non-zero
+        if (msgID != 0) {
+            mSnackBar = Snackbar.make(mSbContainer, msgID, Snackbar.LENGTH_SHORT);
+            mSnackBar.show();
+        }
+    }
+
+    private void doUpdatesAfterGameStartOrTakingTurn() {
+        updateStatusBar();
+        updateRecyclerViewAdapter();
+        checkForGameOver();
+    }
+
+    private void updateStatusBar() {
+        // Update the Status Bar with the number of cards left (from Java) via our current game obj
+        mTv_cardsRemaining.setText(getString(R.string.cards_to_discard).concat
+                (String.valueOf(mCurrentGame.getNumCardsLeftToDiscardFromDeckAndStacks())));
+
+        mTv_cardsInDeck.setText(getString(R.string.in_deck).concat(
+                String.valueOf(mCurrentGame.getNumberOfCardsLeftInDeck())));
+    }
+
+    private void updateRecyclerViewAdapter() {
+        // get the data for the new board from our game object (Java) which tracks the four stacks
+        Card[] currentTops = mCurrentGame.getCurrentStacksTopIncludingNulls();
+
+        // temporary card used when updating the board below
+        Card currentCard, currentAdapterCard;
+
+        // Update the board one pile/card at a time, as needed
+        for (int i = 0; i < currentTops.length; i++) {
+            currentCard = currentTops[i];
+            currentAdapterCard = mAdapter.getCardAt(i);
+
+            if ((currentAdapterCard == null || !currentAdapterCard.equals(currentCard))) {
+                // Have Adapter set each card to the matching top card of each stack
+                mAdapter.updatePile(i, currentCard,
+                        mCurrentGame.getNumberOfCardsInStackAtPosition(i));
+            }
+
+            // Clear the checks that the user might have just set
+            mAdapter.clearCheck(i);
+        }
+    }
+
+    /**
+     * If the game is over, this method outputs a dialog box with the correct message (win/not)
+     */
+    private void checkForGameOver() {
+        // If the game is over, let the user know what happened and then start a new game
+        if (mCurrentGame.isGameOver()) {
+            showGameOverDialog(getString(R.string.game_over),
+                    mCurrentGame.isWinner() ? mWINNER_MSG : mNON_WINNER_MSG);
+        }
     }
 
     /**
@@ -154,7 +266,7 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         //if (id == R.id.action_settings) {
-        //   return true;
+        //    return true;
         //}
 
         return super.onOptionsItemSelected(item);
@@ -173,5 +285,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void turn_action_undo(View view) {
+    }
+
+    /**
+     * Shows an Android (nicer) equivalent to JOptionPane
+     *
+     * @param strTitle Title of the Dialog box
+     * @param strMsg   Message (body) of the Dialog box
+     */
+    private void showGameOverDialog(String strTitle, String strMsg) {
+        final DialogInterface.OnClickListener newGameListener =
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startNewGame();
+                    }
+                };
+
+        showYesNoDialog(this, strTitle, strMsg, newGameListener, null);
     }
 }
